@@ -15,6 +15,6 @@ public class HelloWorld {
     @GetMapping("hello")
     public String helloWorld(Model model){
         model.addAttribute("name","王克千");
-        return "helloworld";
+        return "index";
     }
 }
