@@ -1,5 +1,16 @@
 server:
   port: 8080
+spring:
+  redis:
+    database: 0
+    host: redis
+    port: 6379
+    timeout: 1000
+    jedis:
+      pool:
+        max-wait: -1
+        max-active: 22
+        min-idle: 0
 github:
   client:
     id: Iv1.867c6edd26016e9e
