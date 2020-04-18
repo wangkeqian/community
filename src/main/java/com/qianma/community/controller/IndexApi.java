@@ -3,6 +3,7 @@ package com.qianma.community.controller;
 import com.qianma.community.Model.User;
 import com.qianma.community.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,6 +21,8 @@ public class IndexApi {
 
     @Autowired
     RedisUtil redisUtil;
+    @Value("${github.client.address}")
+    private String address;
 
     @GetMapping("/")
     public String index(HttpServletRequest request){
@@ -39,6 +42,7 @@ public class IndexApi {
         }
         if (user != null && user.getStatus()==1 && user.getToken().equals(token)){
             request.getSession().setAttribute("user",user);
+            request.getSession().setAttribute("address",address);
         }
         return "index";
     }

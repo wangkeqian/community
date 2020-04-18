@@ -26,3 +26,4 @@ github:
     id: Iv1.867c6edd26016e9e
     secret: a245010f946518828d2fcbbfaa0afee277706434
     redirect_url: http://localhost:8080/callback
+    address: localhost
