@@ -42,8 +42,8 @@ public class IndexApi {
         }
         if (user != null && user.getStatus()==1 && user.getToken().equals(token)){
             request.getSession().setAttribute("user",user);
-            request.getSession().setAttribute("address",address);
         }
+        request.getSession().setAttribute("address",address);
         return "index";
     }
     @GetMapping("exit")
