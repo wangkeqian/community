@@ -26,7 +26,8 @@ public class QuestionEditApi {
     QuestionService questionService;
 
     @GetMapping("/form")
-    public String questionEdit(){
+    public String questionEdit(Model model){
+        model.addAttribute("data",new Question());
         return "question/questionEdit";
     }
 
