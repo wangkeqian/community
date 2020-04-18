@@ -55,6 +55,7 @@ public class AuthorizeApi {
         accessTokenDTO.setRedirect_url(redirectUrl);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GitHubUser gitHubUser = githubProvider.getUser(accessToken);
+        System.out.println("callback-gitHubUser"+gitHubUser);
         if (gitHubUser != null){
             Map<String, Object> userMap = new HashMap<>();
             User user = new User();
