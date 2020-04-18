@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianma.community.mapper.QuestionMapper">
+
+    <select id="getById" resultType="com.qianma.community.Model.Question">
+        select * from t_cmt_question where id = #{id}
+    </select>
+    <insert id="insert" keyProperty="fid"  parameterType="com.qianma.community.Model.Question">
+        insert into t_cmt_question(
+        fid,
+        fgmt_create,
+        fgmt_modified,
+        fkcreatorid,
+        ftitle,
+        fdescription,
+        ftags,
+        fcomment_count,
+        flike_count,
+        fview_count)
+        value (
+        #{id},
+        #{gmtCreate},
+        #{gmtModified},
+        #{creator.id},
+        #{title},
+        #{desc},
+        #{tags},
+        #{commentCount},
+        #{likeCount},
+        #{viewCount}
+        )
+    </insert>
+</mapper>
