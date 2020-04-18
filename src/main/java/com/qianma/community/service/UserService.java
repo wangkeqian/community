@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserMapper mapper;
-    public String insert(User user) {
-        return mapper.insert(user);
+    public void insert(User user) {
+        mapper.insert(user);
     }
     public User getById(String id){
         return mapper.getById(id);

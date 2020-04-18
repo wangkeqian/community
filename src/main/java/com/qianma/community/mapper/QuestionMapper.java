@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface QuestionMapper {
     Question getById(@Param("id") String id);
-    String insert(Question question);
+    void insert(Question question);
 }

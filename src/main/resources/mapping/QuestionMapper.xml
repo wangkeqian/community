@@ -5,7 +5,7 @@
     <select id="getById" resultType="com.qianma.community.Model.Question">
         select * from t_cmt_question where id = #{id}
     </select>
-    <insert id="insert" keyProperty="fid"  parameterType="com.qianma.community.Model.Question">
+    <insert id="insert"  parameterType="com.qianma.community.Model.Question">
         insert into t_cmt_question(
         fid,
         fgmt_create,

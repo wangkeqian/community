@@ -16,8 +16,8 @@ import java.util.UUID;
 @Data
 public class DataEntity implements Serializable {
     private String id;
-    private Long gmtCreate;
-    private Long gmtModified;
+    private Date gmtCreate;
+    private Date gmtModified;
     private User creator;
     private User updator;
 
@@ -31,5 +31,19 @@ public class DataEntity implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Date getGmtCreate() {
+        if (this.gmtCreate == null){
+            this.gmtCreate = new Date();
+        }
+        return gmtCreate;
+    }
+
+    public Date getGmtModified() {
+        if (this.gmtModified == null){
+            this.gmtModified = new Date();
+        }
+        return gmtModified;
     }
 }

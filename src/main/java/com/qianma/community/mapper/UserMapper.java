@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserMapper {
     User getById(@Param("fid") String id);
-    String insert(User user);
+    void insert(User user);
 
 }

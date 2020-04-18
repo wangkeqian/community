@@ -21,7 +21,7 @@ public class QuestionService {
         return questionMapper.getById(id);
     }
     public String insert(Question question){
-        question.setUpdator(SystemUtil.getLoginUser());
+        question.setCreator(SystemUtil.getLoginUser());
         questionMapper.insert(question);
         return question.getId();
     }
