@@ -1,10 +1,13 @@
 package com.qianma.community.service;
 
 import com.qianma.community.Model.Question;
+import com.qianma.community.dto.QueUsrDTO;
 import com.qianma.community.mapper.QuestionMapper;
 import com.qianma.community.utils.SystemUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * TODO 请说明此类的作用
@@ -24,5 +27,9 @@ public class QuestionService {
         question.setCreator(SystemUtil.getLoginUser());
         questionMapper.insert(question);
         return question.getId();
+    }
+
+    public List<QueUsrDTO> selectForIndex() {
+        return questionMapper.selectForIndex();
     }
 }

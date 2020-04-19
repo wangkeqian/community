@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="/css/community.css">
 </head>
 
 <body>
@@ -49,22 +50,47 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a th:href="@{'http://'+${session.address}+':8080/question/edit/form'}">发起提问 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a th:href="@{'http://'+${address}+':8080/question/edit/form'}">发起提问 <span class="sr-only">(current)</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.user == null}"><a th:href="@{'https://github.com/login/oauth/authorize?client_id=Iv1.867c6edd26016e9e&redirect_uri=http://'+${session.address}+':8080/callback&scope=user&state=1'}">登录</a></li>
-                <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}">我 <span class="caret"></span></a>
+                <li th:if="${user == null}"><a th:href="@{'https://github.com/login/oauth/authorize?client_id=Iv1.867c6edd26016e9e&redirect_uri=http://'+${address}+':8080/callback&scope=user&state=1'}">登录</a></li>
+                <li class="dropdown" th:if="${user != null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${user.getName()}">我 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人资料</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a th:href="@{'http://'+${session.address}+':8080/exit'}">退出</a></li>
+                        <li><a th:href="@{'http://'+${address}+':8080/exit'}">退出</a></li>
                     </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="container-fluid">
+    <div class="row main" >
+        <div class="col-lg-9 col-md-12 col-sm-12">
+            <h3><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 发现</h3>
+            <hr>
+            <th:block th:each="item,index: ${questionList}">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded" src="https://www.gravatar.com/avatar/6abecf8b42abe112614d1747f7bd15a5?d=identicon&s=50" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${item.getTitle()}" ></h4>
+                    <span th:text="${item.getDesc()}+'......'"></span><br>
+                    <span class="question-count" th:text="${item.getCommentCount()}+'个回复·'+${item.getViewCount()}+'次浏览·'+${#dates.format(item.getGmtCreate(),'MM-dd-yyyy')}"></span>
+                </div>
+            </div>
+            </th:block>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12" >
+            <h3>热门话题</h3>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -64,9 +64,11 @@ public class AuthorizeApi {
             user.setName(gitHubUser.getName());
             user.setStatus(1);
             user.setToken(UUID.randomUUID().toString());
+            user.setAvatarUrl(gitHubUser.getAvatar_url());
             userMap.put(user.getClientId(), user);
             redisUtil.hmset("user", userMap);
             response.addCookie(new Cookie("userToken",user.getClientId()+"_"+user.getToken()));
+            userService.insert(user);
             return "redirect:/";
         }else {
             return "redirect:/";

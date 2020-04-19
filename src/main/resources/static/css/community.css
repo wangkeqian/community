@@ -1,5 +1,5 @@
 .main{
-    margin: 30px;
+    margin: 100px;
     background-color: white;
 }
 body{
@@ -7,4 +7,13 @@ body{
 }
 .btn-success{
     float: right;
+}
+.img-rounded{
+    width: 45px;
+    height: 45px;
+}
+.question-count{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
 }

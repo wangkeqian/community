@@ -30,4 +30,20 @@
         #{viewCount}
         )
     </insert>
+    <select id="selectForIndex" resultType="com.qianma.community.dto.QueUsrDTO">
+     select
+        tcq.fid id,
+        tcq.fgmt_create gmtCearte,
+        tcq.fgmt_modified gmtModified,
+        tcq.fkcreatorid "creator.id",
+        tcq.fdescription "desc",
+        tcq.ftitle title,
+        tcq.ftags tags,
+        tcq.fview_count viewCount,
+        tcq.flike_count likeCount,
+        tcq.fcomment_count commentCount,
+        tcu.favatar_url avatarUrl
+     from t_cmt_question tcq
+     left join t_cmt_user tcu on tcq.fkcreatorid = tcu.fid
+    </select>
 </mapper>

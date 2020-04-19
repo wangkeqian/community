@@ -18,4 +18,5 @@ public class User extends DataEntity {
     private String desc;
     private int status;  //0未登录 1登录
     private String token;
+    private String avatarUrl;
 }

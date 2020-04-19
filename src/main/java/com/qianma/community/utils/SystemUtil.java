@@ -36,10 +36,14 @@ public class SystemUtil {
                 if (cookie.getName().equals("userToken")){
                     String tokenCookies = cookie.getValue();
                     String clientId = tokenCookies.split("_")[0];
+                    token = tokenCookies.split("_")[1];
                     user = (User) redisUtil.hget("user", clientId);
                     break;
                 }
             }
+        }
+        if (!(user != null && user.getStatus()==1 && user.getToken().equals(token))){
+            user = null;
         }
         return user;
     }

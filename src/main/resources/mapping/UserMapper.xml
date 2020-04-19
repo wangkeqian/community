@@ -14,7 +14,8 @@
         fstatus,
         ftoken,
         fname,
-        fclient_id)
+        fclient_id,
+        favatar_url)
         value (
         #{id},
         #{gmtCreate},
@@ -23,7 +24,8 @@
         #{status},
         #{token},
         #{name},
-        #{clientId}
+        #{clientId},
+        #{avatarUrl}
         )
     </insert>
 </mapper>
