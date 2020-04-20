@@ -4,6 +4,8 @@ import com.qianma.community.Model.User;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,17 +22,11 @@ public class DataEntity implements Serializable {
     private Date gmtModified;
     private User creator;
     private User updator;
-
-
     public String getId() {
         if (null==id ||id.isEmpty()){
             this.id = UUID.randomUUID().toString();
         }
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Date getGmtCreate() {

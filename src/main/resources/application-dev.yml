@@ -14,7 +14,7 @@ spring:
   datasource:
     username: root
     password: WKQ!123!wkq
-    url: jdbc:mysql://mysql:3306/community?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://mysql:3306/community?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
@@ -27,3 +27,8 @@ github:
     secret: a245010f946518828d2fcbbfaa0afee277706434
     redirect_url: http://localhost:8080/callback
     address: localhost
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

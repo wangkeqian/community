@@ -27,3 +27,8 @@ github:
     secret: a245010f946518828d2fcbbfaa0afee277706434
     redirect_url: http://112.74.161.190:8080/callback
     address: 112.74.161.190
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

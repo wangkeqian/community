@@ -17,3 +17,11 @@ body{
     font-weight: normal;
     color: #999;
 }
+.media-heading{
+    color: #499ef3;
+    font-size: 18px;
+    font-family: "STKaiti";
+}
+.pagination{
+    float: right;
+}

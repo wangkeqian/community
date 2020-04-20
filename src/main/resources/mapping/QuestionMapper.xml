@@ -31,7 +31,7 @@
         )
     </insert>
     <select id="selectForIndex" resultType="com.qianma.community.dto.QueUsrDTO">
-     select
+    select
         tcq.fid id,
         tcq.fgmt_create gmtCearte,
         tcq.fgmt_modified gmtModified,
@@ -44,6 +44,7 @@
         tcq.fcomment_count commentCount,
         tcu.favatar_url avatarUrl
      from t_cmt_question tcq
-     left join t_cmt_user tcu on tcq.fkcreatorid = tcu.fid
+     join t_cmt_user tcu on tcq.fkcreatorid = tcu.fid
+     order by tcq.fgmt_create desc
     </select>
 </mapper>

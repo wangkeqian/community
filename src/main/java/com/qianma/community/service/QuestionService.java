@@ -1,9 +1,14 @@
 package com.qianma.community.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.qianma.community.Model.Question;
+import com.qianma.community.common.DataEntity;
 import com.qianma.community.dto.QueUsrDTO;
 import com.qianma.community.mapper.QuestionMapper;
 import com.qianma.community.utils.SystemUtil;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +36,12 @@ public class QuestionService {
 
     public List<QueUsrDTO> selectForIndex() {
         return questionMapper.selectForIndex();
+    }
+
+    public PageInfo<QueUsrDTO> getPageListData(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<QueUsrDTO> queUsrDTOS = questionMapper.selectForIndex();
+        PageInfo<QueUsrDTO> pageInfo = new PageInfo<>(queUsrDTOS);
+        return  pageInfo;
     }
 }

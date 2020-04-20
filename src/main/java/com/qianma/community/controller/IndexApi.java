@@ -1,7 +1,9 @@
 package com.qianma.community.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.qianma.community.Model.Question;
 import com.qianma.community.Model.User;
+import com.qianma.community.common.DataEntity;
 import com.qianma.community.dto.QueUsrDTO;
 import com.qianma.community.service.QuestionService;
 import com.qianma.community.utils.RedisUtil;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -39,8 +42,18 @@ public class IndexApi {
         if (loginUser != null){
             model.addAttribute("user",loginUser);
         }
-        List<QueUsrDTO> questionList = questionService.selectForIndex();
-        model.addAttribute("questionList",questionList);
+        PageInfo<? extends DataEntity> questionList = questionService.getPageListData(1,3);
+        model.addAttribute("pageInfo",questionList);
+        model.addAttribute("address",address);
+        return "index";
+    }
+    @GetMapping("/page/{pageNum}/{pageSize}")
+    public String listData(Model model,
+                           @PathVariable("pageNum") Integer pageNum,
+                           @PathVariable("pageSize") Integer pageSize){
+
+        PageInfo<? extends DataEntity> questionList = questionService.getPageListData(pageNum,pageSize);
+        model.addAttribute("pageInfo",questionList);
         model.addAttribute("address",address);
         return "index";
     }
