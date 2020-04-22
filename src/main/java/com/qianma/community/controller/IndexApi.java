@@ -31,30 +31,22 @@ public class IndexApi {
 
     @Autowired
     RedisUtil redisUtil;
-    @Value("${github.client.address}")
-    private String address;
     @Autowired
     private QuestionService questionService;
 
     @GetMapping("/")
     public String index(Model model){
-        User loginUser = SystemUtil.getLoginUser();
-        if (loginUser != null){
-            model.addAttribute("user",loginUser);
-        }
-        PageInfo<? extends DataEntity> questionList = questionService.getPageListData(1,3);
+        SystemUtil.getLoginUser();
+        PageInfo<? extends DataEntity> questionList = questionService.getPageListData(1,5);
         model.addAttribute("pageInfo",questionList);
-        model.addAttribute("address",address);
         return "index";
     }
     @GetMapping("/page/{pageNum}/{pageSize}")
     public String listData(Model model,
                            @PathVariable("pageNum") Integer pageNum,
                            @PathVariable("pageSize") Integer pageSize){
-
         PageInfo<? extends DataEntity> questionList = questionService.getPageListData(pageNum,pageSize);
         model.addAttribute("pageInfo",questionList);
-        model.addAttribute("address",address);
         return "index";
     }
     @GetMapping("exit")

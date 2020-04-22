@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>从这开始</title>
+    <title>我的问题</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -19,24 +19,24 @@
 <div class="common-head">
     <div id="head" th:include="publicTemplates/head :: common_head"></div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid profile">
     <div class="row main" >
         <div class="col-lg-9 col-md-12 col-sm-12">
-            <h3><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 发现</h3>
+            <h3><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span><span th:text="${title}"></span></h3>
             <hr>
             <th:block th:each="item,index: ${pageInfo.getList()}">
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object img-rounded" src="https://www.gravatar.com/avatar/6abecf8b42abe112614d1747f7bd15a5?d=identicon&s=50" alt="...">
-                    </a>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-rounded" src="https://www.gravatar.com/avatar/6abecf8b42abe112614d1747f7bd15a5?d=identicon&s=50" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" th:text="${item.getTitle()}" ></h4>
+                        <span th:text="${item.getDesc()}+'......'"></span><br>
+                        <span class="question-count" th:text="${item.getCommentCount()}+'个回复·'+${item.getViewCount()}+'次浏览·'+${#dates.format(item.getGmtCreate(),'MM-dd-yyyy')}"></span>
+                    </div>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading" th:text="${item.getTitle()}" ></h4>
-                    <span th:text="${item.getDesc()}+'......'"></span><br>
-                    <span class="question-count" th:text="${item.getCommentCount()}+'个回复·'+${item.getViewCount()}+'次浏览·'+${#dates.format(item.getGmtCreate(),'MM-dd-yyyy')}"></span>
-                </div>
-            </div>
             </th:block>
             <nav aria-label="Page navigation" >
                 <ul class="pagination">
@@ -62,7 +62,24 @@
             </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12" >
-            <h3>热门话题</h3>
+            <div class="list-group section">
+                <a th:href="@{'http://'+${session.address}+':8080/profile/deal/myQuestion'}" class="list-group-item active">
+                    <span class="badge">14</span>
+                    我的问题
+                </a>
+                <a th:href="@{'http://'+${session.address}+':8080/profile/deal/replies'}" class="list-group-item">
+                    最新回复
+                </a>
+                <a th:href="@{'http://'+${session.address}+':8080/profile/deal/roughNotBook'}" class="list-group-item">
+                    我的草稿
+                </a>
+                <a th:href="@{'http://'+${session.address}+':8080/profile/deal/replies'}" class="list-group-item">
+                    <span class="badge">14</span>
+                    我的收藏
+                </a>
+                <a th:href="@{'http://'+${session.address}+':8080/profile/deal/focusQuestion'}" class="list-group-item">我关注的问题</a>
+                <a th:href="@{'http://'+${session.address}+':8080/profile/deal/focusTopic'}" class="list-group-item">我关注的话题</a>
+            </div>
         </div>
     </div>
 </div>

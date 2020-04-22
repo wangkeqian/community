@@ -2,6 +2,7 @@ package com.qianma.community.utils;
 
 import com.qianma.community.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -21,10 +22,14 @@ public class SystemUtil {
     @Autowired
     public RedisUtil redisUtilOg;
     private static RedisUtil redisUtil;
+    private static String addressUrl;
     @PostConstruct
     public void init(){
         redisUtil = redisUtilOg;
+        addressUrl = address;
     }
+    @Value("${github.client.address}")
+    public String address;
 
     public static User getLoginUser(){
         HttpServletRequest request =  ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
@@ -45,6 +50,8 @@ public class SystemUtil {
         if (!(user != null && user.getStatus()==1 && user.getToken().equals(token))){
             user = null;
         }
+        request.getSession().setAttribute("user",user);
+        request.getSession().setAttribute("address",addressUrl);
         return user;
     }
 }
