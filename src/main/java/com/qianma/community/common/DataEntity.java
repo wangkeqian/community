@@ -20,8 +20,8 @@ public class DataEntity implements Serializable {
     private String id;
     private Date gmtCreate;
     private Date gmtModified;
-    private User creator;
-    private User updator;
+    private String creator;
+    private String updator;
     public String getId() {
         if (null==id ||id.isEmpty()){
             this.id = UUID.randomUUID().toString();

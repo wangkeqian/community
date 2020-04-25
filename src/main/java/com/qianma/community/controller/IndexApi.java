@@ -36,7 +36,6 @@ public class IndexApi {
 
     @GetMapping("/")
     public String index(Model model){
-        SystemUtil.getLoginUser();
         PageInfo<? extends DataEntity> questionList = questionService.getPageListData(1,5);
         model.addAttribute("pageInfo",questionList);
         return "index";

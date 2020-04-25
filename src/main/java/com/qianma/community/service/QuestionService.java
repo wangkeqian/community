@@ -25,8 +25,9 @@ public class QuestionService {
     public Question getById(String id){
         return questionMapper.getById(id);
     }
+
     public String insert(Question question){
-        question.setCreator(SystemUtil.getLoginUser());
+        question.setCreator(SystemUtil.getLoginUser().getId());
         questionMapper.insert(question);
         return question.getId();
     }
@@ -40,5 +41,9 @@ public class QuestionService {
         List<QueUsrDTO> queUsrDTOS = questionMapper.selectForIndex();
         PageInfo<QueUsrDTO> pageInfo = new PageInfo<>(queUsrDTOS);
         return  pageInfo;
+    }
+
+    public QueUsrDTO getQueUsr(String id) {
+        return questionMapper.getQueUsrById(id);
     }
 }

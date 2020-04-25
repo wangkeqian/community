@@ -3,7 +3,9 @@ package com.qianma.community.controller.question;
 import com.github.pagehelper.PageInfo;
 import com.qianma.community.Model.Question;
 import com.qianma.community.common.DataEntity;
+import com.qianma.community.dto.QueUsrDTO;
 import com.qianma.community.service.QuestionService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +27,10 @@ public class QuestionViewApi {
     @Autowired
     QuestionService questionService;
 
-    @GetMapping("/search/{id}")
-    @ResponseBody
-    public Question searchQuestion(@PathVariable String id){
-        return questionService.getById(id);
+    @GetMapping("/{id}")
+    public String searchQuestion(@PathVariable String id, Model model){
+        QueUsrDTO queUsrDTO = questionService.getQueUsr(id);
+        return "question/questionView.html";
     }
-
 
 }

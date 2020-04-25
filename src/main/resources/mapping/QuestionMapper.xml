@@ -3,7 +3,9 @@
 <mapper namespace="com.qianma.community.mapper.QuestionMapper">
 
     <select id="getById" resultType="com.qianma.community.Model.Question">
-        select * from t_cmt_question where id = #{id}
+        select
+        *
+        from t_cmt_question where id = #{id}
     </select>
     <insert id="insert"  parameterType="com.qianma.community.Model.Question">
         insert into t_cmt_question(
@@ -21,7 +23,7 @@
         #{id},
         #{gmtCreate},
         #{gmtModified},
-        #{creator.id},
+        #{creator},
         #{title},
         #{desc},
         #{tags},
@@ -35,6 +37,31 @@
         tcq.fid id,
         tcq.fgmt_create gmtCearte,
         tcq.fgmt_modified gmtModified,
+        tcq.fkcreatorid "creator",
+        tcq.fdescription "desc",
+        tcq.ftitle title,
+        tcq.ftags tags,
+        tcq.fview_count viewCount,
+        tcq.flike_count likeCount,
+        tcq.fcomment_count commentCount,
+        tcu.fid "user.id",
+        tcu.fgmt_create "user.gmtCearte",
+        tcu.fgmt_modified "user.gmtModified",
+        tcu.fdesc "user.desc",
+        tcu.fstatus "user.status",
+        tcu.ftoken "user.token",
+        tcu.fname "user.name",
+        tcu.fclient_id "user.clientId",
+        tcu.favatar_url "user.avatarUrl"
+     from t_cmt_question tcq
+     join t_cmt_user tcu on tcq.fkcreatorid = tcu.fid
+     order by tcq.fgmt_create desc
+    </select>
+    <select id="getQueUsrById" resultType="com.qianma.community.dto.QueUsrDTO">
+    select
+        tcq.fid id,
+        tcq.fgmt_create gmtCearte,
+        tcq.fgmt_modified gmtModified,
         tcq.fkcreatorid "creator.id",
         tcq.fdescription "desc",
         tcq.ftitle title,
@@ -42,9 +69,17 @@
         tcq.fview_count viewCount,
         tcq.flike_count likeCount,
         tcq.fcomment_count commentCount,
-        tcu.favatar_url avatarUrl
+        tcu.fid "user.id",
+        tcu.fgmt_create "user.gmtCearte",
+        tcu.fgmt_modified "user.gmtModified",
+        tcu.fdesc "user.desc",
+        tcu.fstatus "user.status",
+        tcu.ftoken "user.token",
+        tcu.fname "user.name",
+        tcu.fclient_id "user.clientId",
+        tcu.favatar_url "user.avatarUrl"
      from t_cmt_question tcq
      join t_cmt_user tcu on tcq.fkcreatorid = tcu.fid
-     order by tcq.fgmt_create desc
+     where tcq.fid = #{id}
     </select>
 </mapper>

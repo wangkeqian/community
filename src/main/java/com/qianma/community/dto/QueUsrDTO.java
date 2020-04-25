@@ -1,5 +1,6 @@
 package com.qianma.community.dto;
 
+import com.qianma.community.Model.User;
 import com.qianma.community.common.DataEntity;
 import lombok.Data;
 
@@ -20,5 +21,5 @@ public class QueUsrDTO extends DataEntity {
     private Integer viewCount;
     private Integer likeCount;
     private Integer commentCount;
-    private String avatarUrl;
+    private User user;
 }

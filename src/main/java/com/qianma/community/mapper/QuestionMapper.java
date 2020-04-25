@@ -13,4 +13,6 @@ public interface QuestionMapper {
     void insert(Question question);
 
     List<QueUsrDTO> selectForIndex();
+
+    QueUsrDTO getQueUsrById(@Param("id")String id);
 }
