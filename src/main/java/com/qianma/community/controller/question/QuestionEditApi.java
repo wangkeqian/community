@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * TODO 请说明此类的作用
@@ -32,13 +34,25 @@ public class QuestionEditApi {
     }
 
     @PostMapping("/save")
-    public String save(Model model, Question question){
+    @ResponseBody
+    public Map save(Model model, Question question){
+        HashMap<String, Object> resultMap = new HashMap<>();
         if (SystemUtil.getLoginUser() == null){
             model.addAttribute("data",question);
-            return "question/questionEdit";
+            resultMap.put("STATE","FAIL");
+            resultMap.put("MSG","");
+            return resultMap;
         }
-        questionService.insert(question);
-        return "redirect:/";
+        questionService.createOrUpdate(question);
+        resultMap.put("id",question.getId());
+        resultMap.put("STATE","SUCCESS");
+        resultMap.put("MSG","");
+        return resultMap;
+    }
+    @GetMapping("/{id}")
+    public String edit(@PathVariable String id,Model model){
+        model.addAttribute("data",questionService.getQueUsr(id));
+        return "question/questionEdit";
     }
 
 

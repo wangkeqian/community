@@ -62,7 +62,7 @@
         tcq.fid id,
         tcq.fgmt_create gmtCearte,
         tcq.fgmt_modified gmtModified,
-        tcq.fkcreatorid "creator.id",
+        tcq.fkcreatorid "creator",
         tcq.fdescription "desc",
         tcq.ftitle title,
         tcq.ftags tags,
@@ -82,4 +82,14 @@
      join t_cmt_user tcu on tcq.fkcreatorid = tcu.fid
      where tcq.fid = #{id}
     </select>
+    <update id="update" parameterType="com.qianma.community.Model.Question">
+    update t_cmt_question
+    <set>
+        ftitle = #{title},
+        fdescription = #{desc},
+        fgmt_modified = now(),
+        ftags = #{tags}
+    </set>
+    where fid = #{id}
+    </update>
 </mapper>

@@ -27,7 +27,7 @@
             <th:block th:each="item,index: ${pageInfo.getList()}">
             <div class="media">
                 <div class="media-left">
-                    <a href="#">
+                    <a th:href="@{'/question/view/'+${item.id}}" >
                         <img class="media-object img-rounded" src="https://www.gravatar.com/avatar/6abecf8b42abe112614d1747f7bd15a5?d=identicon&s=50" alt="...">
                     </a>
                 </div>

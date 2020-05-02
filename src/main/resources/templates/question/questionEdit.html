@@ -24,7 +24,8 @@
         <div class="col-lg-9 col-md-12 col-sm-12">
             <h3><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h3>
             <hr>
-            <form action="/question/edit/save" method="post">
+            <form id="formData" action="/question/edit/save" method="post">
+                <input type="hidden" id="id" name="id" th:value="${data.id}">
                 <div class="form-group">
                     <label for="title">问题标题（简单扼要）</label>
                     <input type="text" class="form-control" id="title" name="title" th:value="${data.getTitle()}" placeholder="问题标题.....">
@@ -37,7 +38,7 @@
                     <label for="addTags">添加标签</label>
                     <input type="text" class="form-control" th:value="${data.getTags()}" id="addTags" name="tags" placeholder="添加标签,以逗号隔开">
                 </div>
-                <button type="submit"  class="btn btn-success">发布</button>
+                <button type="button"  id="submit" class="btn btn-success">发布</button>
             </form>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12" >
@@ -46,4 +47,5 @@
     </div>
 </div>
 </body>
+<script src="/js/questionEdit.js"></script>
 </html>

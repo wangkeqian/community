@@ -16,6 +16,7 @@ public class UserService {
     @Autowired
     private UserMapper mapper;
     public void insert(User user) {
+        user.setUUID();
         mapper.insert(user);
     }
     public User getById(String id){

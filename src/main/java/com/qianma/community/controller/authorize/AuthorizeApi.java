@@ -59,6 +59,7 @@ public class AuthorizeApi {
         if (gitHubUser != null){
             Map<String, Object> userMap = new HashMap<>();
             User user = new User();
+            user.setUUID();
             user.setClientId(gitHubUser.getId());
             user.setDesc(gitHubUser.getBio());
             user.setName(gitHubUser.getName());

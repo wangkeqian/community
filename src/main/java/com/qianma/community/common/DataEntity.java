@@ -23,9 +23,6 @@ public class DataEntity implements Serializable {
     private String creator;
     private String updator;
     public String getId() {
-        if (null==id ||id.isEmpty()){
-            this.id = UUID.randomUUID().toString();
-        }
         return id;
     }
 
@@ -41,5 +38,10 @@ public class DataEntity implements Serializable {
             this.gmtModified = new Date();
         }
         return gmtModified;
+    }
+    public void  setUUID(){
+        if (null==id ||id.isEmpty()){
+            this.id = UUID.randomUUID().toString();
+        }
     }
 }

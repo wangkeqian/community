@@ -2,6 +2,7 @@ package com.qianma.community.controller.question;
 
 import com.github.pagehelper.PageInfo;
 import com.qianma.community.Model.Question;
+import com.qianma.community.common.BaseController;
 import com.qianma.community.common.DataEntity;
 import com.qianma.community.dto.QueUsrDTO;
 import com.qianma.community.service.QuestionService;
@@ -23,14 +24,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/question/view/*")
-public class QuestionViewApi {
+public class QuestionViewApi extends BaseController {
     @Autowired
     QuestionService questionService;
 
+
     @GetMapping("/{id}")
     public String searchQuestion(@PathVariable String id, Model model){
+        questionService.setCount(id,"view");
         QueUsrDTO queUsrDTO = questionService.getQueUsr(id);
+        model.addAttribute("data",queUsrDTO);
         return "question/questionView.html";
     }
-
 }
